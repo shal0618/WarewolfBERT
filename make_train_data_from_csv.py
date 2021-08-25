@@ -4,7 +4,6 @@ import os
 
 from config import Config
 
-
 #ファイルのあるディレクトリパスを入力
 dirPath = Config.csv_file_path
 
@@ -24,5 +23,4 @@ with open(saveFilePath, "a", encoding="utf-8") as save_file:
             reader = csv.reader(csv_file)
             for read in reader:
                 text_complex = [read[6] + "\n", read[7] + "\n", "\n"]
-                save_file.writerows(text_complex)
-
+                save_file.writelines(text_complex)
