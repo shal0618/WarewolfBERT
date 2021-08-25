@@ -21,6 +21,14 @@ with open(saveFilePath, "a", encoding="utf-8") as save_file:
         #ファイルオープン
         with open(file, "r", encoding="utf-8") as csv_file:
             reader = csv.reader(csv_file)
+            first_read_flag = True
             for read in reader:
-                text_complex = [read[6] + "\n", read[7] + "\n", "\n"]
-                save_file.writelines(text_complex)
+                if not first_read_flag:
+                    if "\n" in read[6]:
+                        read[6] = read[6].replace("\n","")
+                    if "\n" in read[7]:
+                        read[7] = read[7].replace("\n","")
+                    text_complex = [read[6] + "\n", read[7] + "\n", "\n"]
+                    save_file.writelines(text_complex)
+                else:
+                    first_read_flag = False
